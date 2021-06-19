@@ -1,8 +1,8 @@
 var pos = 0;
 let pageWidth = window.innerWidth;
 const pacArray = [
-  ["./images/PacMan1.png", "./images/PacMan2.png"],
-  ["./images/PacMan3.png", "./images/PacMan4.png"],
+  ["./Images/PacMan1.png", "./Images/PacMan2.png"],
+  ["./Images/PacMan3.png", "./Images/PacMan4.png"],
 ];
 var direction = 0;
 var focus = 0;
