@@ -1,2 +1,2 @@
 # PacMen
-<img src = "images/PacMan1.png">
+<img src = "Images/PacMan1.png">
