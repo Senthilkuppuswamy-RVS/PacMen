@@ -1,33 +1,72 @@
-var pos = 0;
-let pageWidth = window.innerWidth;
+let pos = 0;
 const pacArray = [
-  ["./Images/PacMan1.png", "./Images/PacMan2.png"],
-  ["./Images/PacMan3.png", "./Images/PacMan4.png"],
+  ['./Images/PacMan1.png', './Images/PacMan2.png'],
+  ['./Images/PacMan3.png', './Images/PacMan4.png'],
 ];
-var direction = 0;
-var focus = 0;
+let direction = 0;
+const pacMen = []; // This array holds all the pacmen
 
-function Run() {
-  let img = document.getElementById("PacMan");
-  let imgWidth = img.width;
-  focus = (focus + 1) % 2;
-  direction = checkPageBounds(direction, imgWidth, pos, pageWidth);
-  img.src = pacArray[direction][focus];
-  if (direction) {
-    pos -= 20;
-    img.style.left = pos + "px";
-  } else {
-    pos += 20;
-    img.style.left = pos + "px";
-  }
-}
-setInterval(Run, 200);
-
-function checkPageBounds(direction, imgWidth, pos, pageWidth) {
-  if (pos + imgWidth > pageWidth) direction = 1;
-  if (pos < 0) direction = 0;
-
-  return direction;
+// This function returns an object with random values
+function setToRandom(scale) {
+  return {
+    x: Math.random() * scale,
+    y: Math.random() * scale,
+  };
 }
 
-module.exports = checkPageBounds;
+// Factory to make a PacMan at a random position with random velocity
+function makePac() {
+  // returns an object with random values scaled {x: 33, y: 21}
+  let velocity = setToRandom(10); // {x:?, y:?}
+  let position = setToRandom(200);
+
+  // Add image to div id = game
+  let game = document.getElementById('game');
+  let newimg = document.createElement('img');
+  newimg.style.position = 'absolute';
+  newimg.src = 'PacMan1.png';
+  newimg.width = 100;
+
+  // TODO: set position here
+    newimg.style.left=position.x;
+    newimg.style.top=position.y;
+  // TODO add new Child image to game
+  game.appendChild(newimg);
+
+  // return details in an object
+  return {
+    position,
+    velocity,
+    newimg,
+  };
+}
+
+function update() {
+  // loop over pacmen array and move each one and move image in DOM
+  pacMen.forEach((item) => {
+    checkCollisions(item);
+    item.position.x += item.velocity.x;
+    item.position.y += item.velocity.y;
+
+    item.newimg.style.left = item.position.x;
+    item.newimg.style.top = item.position.y;
+  });
+  setTimeout(update, 20);
+}
+
+function checkCollisions(item) {
+  // TODO: detect collision with all walls and make pacman bounce
+  if (item.position.x + item.velocity.x + item.newimg.width> window.innerWidth || 
+        item.position.x + item.velocity.x <0) item.velocity.x =-item.velocity.x;
+   if (item.position.y + item.velocity.y + item.newimg.height> window.innerHeight || 
+        item.position.y + item.velocity.y <0) item.velocity.y =-item.velocity.y;
+}
+
+function makeOne() {
+  pacMen.push(makePac()); // add a new PacMan
+}
+
+//don't change this line
+if (typeof module !== 'undefined') {
+  module.exports = { checkCollisions, update, pacMen };
+}
