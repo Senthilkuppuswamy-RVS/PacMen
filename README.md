@@ -12,7 +12,7 @@ Step 2: Click the "Start Game" button, to move the pacman or pacmen created at r
 
 #### Future Improvements
 
-In Future different pacman styles can be used with more animations.
+In future, different pacman styles can be used with more animations.
 
 
 #### License Information
