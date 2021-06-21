@@ -2,7 +2,7 @@
 
 This Project creates PacMen on demand. These PacMen are made to move across the Page. The PacMen created moves in different velocities.
 
-### Steps to Run the Project
+#### Steps to Run the Project
 
 Step 1: Click the "Add PacMan" button, to create a new pacman  which appears at a random position on the screen. 
 
@@ -10,12 +10,12 @@ Step 2: Click the "Start Game" button, to move the pacman or pacmen created at r
 
 <img src = "Images/PacMan1.png" width = 100/>
 
-### Future Work
+#### Future Improvements
 
 In Future different pacman styles can be used with more animations.
 
 
-### License Information
+#### License Information
 
 MIT License
 Permission is hereby granted, free of charge, to any person obtaining a copy
